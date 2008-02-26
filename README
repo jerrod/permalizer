@@ -1,4 +1,7 @@
-permalizer
-==========
+Permalizer
+=================
 
-An easy way to create clean URLs in any Ruby Framework, or not in a Ruby Framework. Framework agnostic.
+Permalizer is a way to create clean URLs from strings. It is framework agnostic, meaning it’s simply just a gem that can be used in Rails, Merb, Sinatra, Camping, etc. It has two ways to use it, with the bang and without it:
+
+“permalizer rocks!”.permalize # => “permalizer-rocks”
+“permalizer rocks # => “permalizer-rocks”
