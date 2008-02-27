@@ -4,9 +4,9 @@ require 'iconv' # required for handling unicode/various languages
 module Permalizer
 
   # permalize! is a destructive method that will make the given string for use as a clean URL
-  # <tt>example:</tt>
-  # blog.title = "My Cool Merb Plugin!"
-  # blog.title.permalize! # => "my-cool-merb-plugin"
+  # example:
+  # blog.title = "My Cool Gem!"
+  # blog.title.permalize! # => "my-cool-gem"
   #
   def permalize!
     permalink!(self)
@@ -25,6 +25,7 @@ module Permalizer
     # permalink!
     # Fix unicode characters, regex unwanted characters, split string, thus removing all whitespace, join it, and downcase it                   
     #
+    # TODO: Ruby 1.9 string encoding
     def permalink!(word)
       (Iconv.new('US-ASCII//TRANSLIT', 'utf-8').iconv word).gsub(/[^\w\s\-\—]/,'').gsub(/[^\w]|[\_]/,' ').split.join('-').downcase  
     end  
