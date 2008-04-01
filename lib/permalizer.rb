@@ -2,7 +2,7 @@
 require 'iconv'
 
 # permalizer files
-require 'lib/permalizer/permalink.rb'
+require File.dirname(__FILE__) + '/permalizer/permalink.rb'
 
 # open the String Class and include our additions
 String.class_eval do
