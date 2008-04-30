@@ -8,15 +8,14 @@ module Permalink
     # blog.title.permalize! # => "my-cool-gem"
     #
     def permalize!
-      Permalink::Permalizer.new(self).to_s
+      replace Permalink::Permalizer.new(self).to_s
     end
 
     # permalize is the same as permalize! except that it is not a destructive method
     # it creates a duplicate of the string and returns it as a clean string for URL usage
     #
     def permalize
-      string = self.dup
-      Permalink::Permalizer.new(string).to_s
+      Permalink::Permalizer.new(self).to_s
     end
   end
   
