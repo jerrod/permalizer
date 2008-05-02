@@ -16,6 +16,12 @@ describe "permalizer" do
     "I've been banged".permalize!.should eql("ive-been-banged")
   end
   
+  it "should ovewrite string original value when permalize! is called" do
+    string = "i'll be overriden soon"
+    string.permalize!
+    string.should eql("ill-be-overriden-soon")
+  end
+  
   it "should correctly handle single and double quotes" do
     "\'here are some single quotes\'".permalize.should eql("here-are-some-single-quotes")
     "\'here are some single quotes\'".permalize!.should eql("here-are-some-single-quotes")
@@ -73,4 +79,13 @@ describe "permalizer" do
     "Should HanDle UPPER case LeTtErS".permalize!.should eql("should-handle-upper-case-letters")
   end
   
+  it "should perform permalization even with a misspelled fix_method" do
+    Permalink::Permalizer.fix_method = :undefined_fix_method
+    "This will be permalized".permalize.should eql("this-will-be-permalized")
+  end
+  
+  it "should perform an utf-8 transformation" do
+    Permalink::Permalizer.fix_method = :utf_8
+    "This string contains utf-8 characters: esdrújula. €100".permalize.should eql("this-string-contains-utf-8-characters-esdrujula-eur100")
+  end
 end
