@@ -33,20 +33,20 @@ module Permalink # :nodo:
   #
   # Permalizer has two class variables that makes configuration possible
   #
-  # <tt>Permalizer.fix_method</tt>
+  # <tt>Permalizer.translate_to</tt>
   #
-  # The vale of this variable determines the fix method that String.permalize will use. The default is <tt>:us_ascii</tt>.
+  # The vale of this variable determines which translation will be used in String.permalize. The default is <tt>:us_ascii</tt>.
   # Possible values are <tt>:iso_8859_1</tt> and <tt>:utf_8</tt>. *The class can be easily extendable to add more fix methods*
   #
   #   module Permalink
   #     class Permalizer
-  #       def my_custom_fix_method
+  #       def my_custom_translate_to
   #         Iconv.(from, to).iconv @word
   #       end
   #     end
   #   end
   #
-  #   Permalink::Permalizer.fix_method = :my_custom_fix_method
+  #   Permalink::Permalizer.translate_to = :my_custom_translate_to
   #
   # <tt>Permalizer.decompose_string</tt>
   #
@@ -108,7 +108,6 @@ module Permalink # :nodo:
     
     protected
       
-      # = Transform
       # Strips out unnecessary characters from any given word or phrase
       # 
       # * first strips non word characters, replacing it with nothing
