@@ -38,6 +38,16 @@ module Permalink # :nodo:
   # The vale of this variable determines the fix method that String.permalize will use. The default is <tt>:us_ascii</tt>.
   # Possible values are <tt>:iso_8859_1</tt> and <tt>:utf_8</tt>. *The class can be easily extendable to add more fix methods*
   #
+  #   module Permalink
+  #     class Permalizer
+  #       def my_custom_fix_method
+  #         Iconv.(from, to).iconv @word
+  #       end
+  #     end
+  #   end
+  #
+  #   Permalink::Permalizer.fix_method = :my_custom_fix_method
+  #
   # <tt>Permalizer.decompose_string</tt>
   #
   # Determines if the permalization must perform the special ActiveSupport method chars.decompose to fix some 
