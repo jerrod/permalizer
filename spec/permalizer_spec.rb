@@ -69,7 +69,7 @@ describe "permalizer" do
   end
   
   it "should correctly handle hyphens" do
-    "here is a–hyphen".permalize.should eql("here-is-a-hyphen")
+    "here is a–hyphen test–this".permalize.should eql("here-is-a-hyphen-test-this")
     "here is a–hyphen".permalize!.should eql("here-is-a-hyphen")
   end
   
@@ -80,12 +80,12 @@ describe "permalizer" do
   end
   
   it "should perform permalization even with a misspelled fix_method" do
-    Permalink::Permalizer.fix_method = :undefined_fix_method
+    Permalink::Permalizer.translate_to = :undefined_fix_method
     "This will be permalized".permalize.should eql("this-will-be-permalized")
   end
   
   it "should perform an utf-8 transformation" do
-    Permalink::Permalizer.fix_method = :utf_8
+    Permalink::Permalizer.translate_to = :utf_8
     "This string contains utf-8 characters: esdrújula. €100".permalize.should eql("this-string-contains-utf-8-characters-esdrujula-eur100")
   end
 end

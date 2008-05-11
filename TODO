@@ -1,3 +1,9 @@
 Add in Support for more languages that iconv doesn't support.
 
 Add Ruby 1.9 string encoding support for fun.
+
+Remove ActiveSupport decompose string dependency
+
+Add documentation to the gem in RDoc format
+
+Clean specs to reflect the changes in the destructive permalize! method

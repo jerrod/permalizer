@@ -3,7 +3,7 @@ require 'rake/gempackagetask'
 
 PLUGIN = "permalizer"
 NAME = "permalizer"
-VERSION = "0.2"
+VERSION = "0.4"
 AUTHOR = "Robert R Evans"
 EMAIL = "revans@robertrevans.com"
 HOMEPAGE = "http://robertrevans.com"
