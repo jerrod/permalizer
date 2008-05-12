@@ -1,4 +1,4 @@
-module Permalink # :nodo: 
+module Permalink # :nodoc: 
   
   # Permalizer adds functionality to the String Object so that clean URLs creation is made simple
   #
