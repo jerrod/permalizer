@@ -3,11 +3,11 @@ module Permalink # :nodo:
   # Permalizer adds functionality to the String Object so that clean URLs creation is made simple
   #
   # It extend the string with <tt>permalize</tt> and <tt>permalize!</tt> which return permalized strings but
-  # don't add the permalization process inside the string class, that process remains
+  # doesn't add the permalization process inside the string class, that process remains
   # in the Permalink::Permalizer class.
   #
   module InstanceMethods     
-    # Transform the receiving string in a permalized string. Since this method is destructive, 
+    # Transform the receiving string to a permalized string. Since this method is destructive, 
     # it should be used cautiously and only for things like clean user input:
     #
     #   post.permalink = "something UNTRUSTFUL that should be a permalink!"
@@ -27,7 +27,7 @@ module Permalink # :nodo:
     end
   end
   
-  # Permalizer makes the permalization and holds configurations through fix methods
+  # Permalizer makes the permalization and holds configurations through translation methods
   #
   # === Configuration
   #
@@ -35,13 +35,13 @@ module Permalink # :nodo:
   #
   # <tt>Permalizer.translate_to</tt>
   #
-  # The vale of this variable determines which translation will be used in String.permalize. The default is <tt>:us_ascii</tt>.
-  # Possible values are <tt>:iso_8859_1</tt> and <tt>:utf_8</tt>. *The class can be easily extendable to add more fix methods*
+  # The value of this variable determines which translation will be used in String.permalize. The default is <tt>:us_ascii</tt>.
+  # Possible values are <tt>:iso_8859_1</tt> and <tt>:utf_8</tt>. *The class can be easily extendable by adding more translation methods*
   #
   #   module Permalink
   #     class Permalizer
   #       def my_custom_translate_to
-  #         Iconv.(from, to).iconv @word
+  #         Iconv.new(from, to).iconv @word
   #       end
   #     end
   #   end
@@ -51,8 +51,8 @@ module Permalink # :nodo:
   # <tt>Permalizer.decompose_string</tt>
   #
   # Determines if the permalization must perform the special ActiveSupport method chars.decompose to fix some 
-  # misunderstand of utf-8 characters in some machines. In these machines, a utf-8 string is scaped 
-  # automatically before is stored and Iconv strips out these scaped characters
+  # misunderstanding of utf-8 characters in some machines. In these machines, a utf-8 string is escaped 
+  # automatically before it is stored and Iconv strips out these escaped characters.
   #
   #   "españa".permalize # => "espaa"  [ugly permalization]
   #   Permalize.decompose_string = true
@@ -62,7 +62,7 @@ module Permalink # :nodo:
   #
   class Permalizer
     
-    # = Class variable which determines the Iconv fix method
+    # = Class variable which determines the Iconv translation method
     # us_ascii is the default
     @@translate_to = :us_ascii
     
@@ -88,14 +88,19 @@ module Permalink # :nodo:
       Iconv.new('US-ASCII//TRANSLIT', 'UTF-8').iconv @word
     end
     
+    # Uses the ISO-8859-1 encoding in the iconv conversion
+    def iso_8859_1
+      Iconv.new('ISO-8859-1//TRANSLIT//IGNORE', 'UTF-8').iconv @word
+    end
+    
     # Uses the UTF-8 encoding in the iconv conversion
     def utf_8
       Iconv.new('UTF-8//TRANSLIT//IGNORE', 'UTF-8').iconv @word
     end
     
-    # Uses the ISO-8859-1 encoding in the iconv conversion
-    def iso_8859_1
-      Iconv.new('ISO-8859-1//TRANSLIT//IGNORE', 'UTF-8').iconv @word
+    # Uses the UTF-16 encoding in the iconv conversion
+    def utf_16
+      Iconv.new('UTF-16//TRANSLIT//IGNORE', 'UTF-8').iconv @word
     end
     
     # Calls the translate_to and transforms the string passed in the constructor in a url valid string

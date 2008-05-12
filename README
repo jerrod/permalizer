@@ -1,10 +1,12 @@
 Permalizer
 =================
 
-Permalizer is a way to create clean URLs from strings. It is framework agnostic, meaning it’s simply just a gem that can be used in Rails, Merb, Sinatra, Camping, etc. It has two ways to use it, with the bang and without it:
+Permalizer adds functionality to the String Object so that clean URLs creation is made simple
 
-“permalizer rocks!”.permalize # => “permalizer-rocks”
-“permalizer rocks # => “permalizer-rocks”
+It extend the string with permalize and permalize! which return permalized strings but
+doesn't add the permalization process inside the string class, that process remains
+in the Permalink::Permalizer class.
+
 
 Contributors
 ------------
