@@ -1,5 +1,4 @@
-Permalizer
-=================
+# Permalizer
 
 Permalizer adds functionality to the String Object so that clean URLs creation is made simple
 
@@ -8,7 +7,6 @@ doesn't add the permalization process inside the string class, that process rema
 in the Permalink::Permalizer class.
 
 
-Contributors
-------------
+## Contributors
 
 Marcos Arias

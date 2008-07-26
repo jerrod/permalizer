@@ -1,7 +1,4 @@
-require 'rubygems'
-require 'rake/gempackagetask'
-
-spec = Gem::Specification.new do |s|
+Gem::Specification.new do |s|
   s.name              = "permalizer"
   s.version           = "0.6"
   s.description       = "Creates clean URLs for whatever string you send to it."
@@ -12,12 +9,4 @@ spec = Gem::Specification.new do |s|
   s.has_rdoc          = true
   s.extra_rdoc_files  = ["readme.markdown", "LICENSE"]
   s.files = %w(LICENSE readme.markdown Rakefile) + Dir.glob("{lib,spec}/**/*")
-end
-
-Rake::GemPackageTask.new(spec) do |pkg|
-  pkg.gem_spec = spec
-end
-
-task :install => [:package] do
-  sh %{sudo gem install pkg/#{NAME}-#{VERSION}}
 end
