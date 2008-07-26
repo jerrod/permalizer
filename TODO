@@ -1,5 +1,0 @@
-Add in Support for more languages that iconv doesn't support.
-
-Add Ruby 1.9 string encoding support for fun.
-
-Remove ActiveSupport decompose string dependency
