@@ -1,9 +1,12 @@
 require 'rubygems'
 require 'rake/gempackagetask'
 
+NAME    = "permalizer"
+VERSION = "0.6"
+
 spec = Gem::Specification.new do |s|
-  s.name              = "permalizer"
-  s.version           = "0.6"
+  s.name              = NAME
+  s.version           = VERSION
   s.description       = "Creates clean URLs for whatever string you send to it."
   s.authors           = ["Robert R Evans", "Marcos Arias"]
   s.email             = "revans@robertrevans.com"
